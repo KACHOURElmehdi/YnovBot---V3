@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AlpineJS Chatbot</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.0.3/tailwind.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div x-data="chatBot()">
+    <div class="flex-1 p-2 sm:p-6 justify-between flex flex-col h-screen">
+        <div id="messages" class="flex flex-col space-y-4 p-3 overflow-y-auto">
+            <template x-for="(message, key) in messages">
+                <div>
+                    <div class="flex items-end" :class="message.from=='bot'?'':'justify-end'">
+                        <div class="flex flex-col space-y-2 text-md leading-tight max-w-lg mx-2" :class="message.from=='bot'?'order-2 items-start':'order-1 items-end'">
+                            <div>
+                                <span class="px-4 py-3 rounded-xl inline-block" :class="message.from=='bot'?'rounded-bl-none bg-gray-100 text-gray-600':'rounded-br-none bg-blue-500 text-white'" x-html="message.text"></span>
+                            </div>
+                        </div>
+                        <img :src="message.from=='bot'?'https://cdn-icons-png.flaticon.com/512/4712/4712139.png':'https://secure.b8cdn.com/images/uploads/user_photos/46/74908146_20230203010818.jpg'" alt="" class="w-6 h-6 rounded-full" :class="message.from=='bot'?'order-1':'order-2'">
+                    </div>
+                </div>
+            </template>
+        </div>
+        <div class="border-t-2 border-gray-200 px-4 pt-4 mb-2 sm:mb-0">
+            <div class="relative flex">
+                <input type="text" placeholder="Say something..." autocomplete="off" autofocus="true" @keydown.enter="updateChat($event.target)" class="text-md w-full focus:outline-none focus:placeholder-gray-400 text-gray-600 placeholder-gray-600 pl-5 pr-16 bg-gray-100 border-2 border-gray-200 focus:border-blue-500 rounded-full py-2" x-ref="input" />
+            </div>
+        </div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/2.8.0/alpine.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+# Ignorer le dossier node_modules
+node_modules/
+
+# Ignorer les fichiers environnementaux
+.env
+
+# Ignorer les fichiers de dépendances lock
+package-lock.json
+
+# Ignorer les logs et fichiers temporaires
+npm-debug.log
+yarn-error.log
